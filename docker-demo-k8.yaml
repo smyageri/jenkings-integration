@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: docker-demo-k8-deployment
+  labels:
+    app: jenkins-docker-demo-k8
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: jenkins-docker-demo-k8
+  template:
+    metadata:
+      labels:
+        app: jenkins-docker-demo-k8
+    spec:
+      containers:
+      - name: jenkins-docker-demo-k8
+        image: localhost:demo-docker-jenkins       
+        ports:
+        - containerPort: 8080
+        imagePullPolicy: Never
